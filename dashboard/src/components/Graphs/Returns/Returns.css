@@ -1,0 +1,52 @@
+.returns-filter {
+    width: 595px;
+    height: 36px;
+    transform: scale(0.8);
+    margin-bottom: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    position: absolute;
+    right: -70px;
+}
+
+.returns__percent {
+    font-size: 1rem;
+    float: left;
+    margin-top: -23px;
+    margin-left: 270px;
+}
+
+.returns-filter__select {
+    font-size: 0.8rem;
+    display: inline;
+    margin-left: 90px;
+}
+
+.returns-filter__date1 {
+    margin: 5px 10px 0px 5px;
+    height: 25px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+.returns-filter__dateto {
+    font-size: 0.8rem;
+    display: inline;
+    position: absolute;
+    top: -2px;
+}
+
+.returns-filter__date2 {
+    margin: 5px 10px 0px 25px;
+    height: 25px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+.returns__graph {
+    width: 450px;
+    top: 10%;
+    left: 3%;
+    transform: scale(1);
+    position: absolute;
+}

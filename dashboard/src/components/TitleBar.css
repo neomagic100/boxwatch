@@ -1,0 +1,34 @@
+.title-bar {
+    box-sizing: border-box;
+    height: 105px;
+    border-bottom: 1px solid lightgray;
+}
+
+.title-bar__inner__ups-logo {
+    margin: 15px 10px 15px 115px;
+    width: 120px;
+}
+
+.title-bar__inner__ps-logo {
+    margin-top: 62px;
+    float: right;
+    width: 80px;
+}
+
+.title-bar__inner__title {
+    color: var(--ups-brown);
+    bottom: 38px;
+    position: relative;
+    display: inline-block;
+    width: max-content;
+    font-size: 1.8rem;
+}
+
+.title-bar__inner__powered {
+    color: gray;
+    font-size: 0.8rem;
+    position: absolute;
+    top: 75px;
+    right: 90px;
+}
+

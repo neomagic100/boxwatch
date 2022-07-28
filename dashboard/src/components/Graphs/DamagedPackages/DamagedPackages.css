@@ -1,0 +1,44 @@
+.damaged-packages__graph {
+    position: absolute;
+    width: 680px;
+    left: 5px;
+    top: 0px;
+}
+
+.claims-filter {
+    width: 595px;
+    height: 36px;
+    transform: scale(0.8);
+    margin-bottom: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    position: absolute;
+    right: -55px;
+}
+
+.claims-filter__select {
+    font-size: 0.9rem;
+    display: inline;
+    margin-left: -25px;
+}
+
+.claims-filter__date1 {
+    margin: 5px 10px 0px 5px;
+    height: 25px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
+
+.claims-filter__dateto {
+    font-size: 0.9rem;
+    display: inline;
+    position: absolute;
+    top: -3px;
+}
+
+.claims-filter__date2 {
+    margin: 5px 10px 0px 25px;
+    height: 25px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+}
