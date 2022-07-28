@@ -1,0 +1,104 @@
+openapi: 3.0.0
+x-stoplight:
+  id: 7u0roj2pbvahw
+info:
+  title: refuelcosts-spec
+  version: '1.0'
+  description: 'Cost of Refueling for Gas, Electric, and Natural Gas Vehicles'
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /refuelcosts:
+    get:
+      summary: refuelcosts
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/refuelcosts-schema'
+              examples:
+                example-1:
+                  $ref: '#/components/examples/example-1'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+      operationId: get-refuelcosts
+      description: Get the entire database history of all refuel costs.
+  /refuelcosts/since-date:
+    get:
+      summary: getCostsSince
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/refuelcosts-schema'
+              examples:
+                example-1:
+                  $ref: '#/components/examples/example-1'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+      operationId: get-refuelcosts-since-date
+      description: Get the refuel costs since a given date.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: fromDate
+          description: Get data between this date and present
+components:
+  schemas:
+    refuelcosts-schema:
+      title: refuelcosts-schema
+      x-stoplight:
+        id: 14krlr94lyh9m
+      allOf:
+        - properties:
+            date:
+              type: string
+            gasCost:
+              type: number
+            elecCost:
+              type: number
+            natGasCost:
+              type: number
+      description: The fields defined for each date in the refuel costs table in the database.
+      type: object
+      x-examples:
+        example-1:
+          $ref: '#/components/examples/example-1'
+  examples:
+    example-1:
+      value:
+        description: Example shared example
+        type: object
+        properties:
+          date:
+            type: string
+            format: date
+            example: '2022-07-27'
+          gasCost:
+            type: number
+            example: 152.12
+          electCost:
+            type: number
+            example: 53.23
+          natGasCost:
+            type: number
+            example: 32.65
