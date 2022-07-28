@@ -1,0 +1,111 @@
+openapi: 3.0.0
+x-stoplight:
+  id: mce3ocllobt5a
+info:
+  title: Returns
+  version: '1.0'
+  description: API to get the number of returns customers made to UPS.
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /returns:
+    get:
+      summary: Get Returns
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/returns-schema'
+              examples:
+                example-1:
+                  $ref: '#/components/examples/example-1'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+      operationId: get-returns
+      description: Return all of the UPS return data in the database.
+  /returns/dates/between:
+    get:
+      summary: Get Returns between Dates
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    Date: 2021/01/01
+                    NumberOfReturns: 3531
+                properties:
+                  Date:
+                    type: string
+                  NumberOfReturns:
+                    type: integer
+              examples:
+                example-1:
+                  $ref: '#/components/examples/example-1'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+      operationId: get-returns-start-end
+      description: This endpoint will return data about UPS returns between two different dates
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: start
+          description: start date
+        - schema:
+            type: string
+          in: query
+          name: end
+          description: end date
+    parameters: []
+components:
+  schemas:
+    returns-schema:
+      title: returns-schema
+      x-stoplight:
+        id: yteyravfnzksh
+      allOf:
+        - properties:
+            Date:
+              type: string
+            NumberOfReturns:
+              type: integer
+      description: Layout of returns table in database
+      x-examples:
+        example-1:
+          $ref: '#/components/examples/example-1'
+      type: object
+  examples:
+    example-1:
+      value:
+        description: Example of object json response
+        type: object
+        properties:
+          Date:
+            type: String
+            format: date
+            example: 2021-01-01
+            description: returns date
+          NumberOfReturns:
+            type: int
+            example: 2398
+            description: number of returns made on that date
