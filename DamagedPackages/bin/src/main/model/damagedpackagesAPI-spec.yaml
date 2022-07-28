@@ -1,0 +1,69 @@
+openapi: 3.0.0
+x-stoplight:
+  id: b5d1ffhjrmov7
+info:
+  title: DamagedPackages
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+tags:
+  - name: Caller Volume
+paths:
+  /damagedPackages:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/damagedpackages-schema'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+      operationId: get-damagedPackages
+      description: Gets all data about UPS damaged packages from database
+  /damagedPackages/start/end:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/damagedpackages-schema'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+      operationId: get-damagedPackages-start-end
+      description: This endpoint will return damaged packages data between two different days
+components:
+  schemas:
+    damagedpackages-schema:
+      title: damagedpackages-schema
+      x-stoplight:
+        id: 9ywd67f4a99ft
+      allOf:
+        - properties:
+            Day:
+              type: integer
+            NumberDetected:
+              type: integer
+            NumberReported:
+              type: integer
+      type: object
+      description: Layout of table damaged packages in database
