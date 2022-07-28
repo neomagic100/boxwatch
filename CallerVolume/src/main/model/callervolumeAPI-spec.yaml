@@ -1,0 +1,232 @@
+openapi: 3.0.0
+x-stoplight:
+  id: lm0kopo38prfu
+info:
+  title: Caller Volume
+  description: Get the caller volume for each day to UPS
+  version: 1.0.0
+servers:
+  - url: 'http://localhost:3000'
+tags:
+  - name: Caller Volume
+    description: Get all data about UPS caller volume
+paths:
+  /callervolume:
+    get:
+      description: Get all the data on caller volume from the database
+      operationId: callervolume
+      responses:
+        '200':
+          description: A list of all caller volumes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/callervolume-schema'
+              examples:
+                example-1:
+                  value:
+                    - callId: 532456
+                      NumberOfCalls: 75312
+                      State: Georgia
+                      CallsDate: '2022-03-14'
+        '400':
+          description: Invalid Request of Caller Volume
+        '404':
+          description: Information not found on Caller Volume
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+  /callerVolume/dates/between:
+    parameters: []
+    get:
+      summary: callVolumeDates
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/callervolume-schema'
+              examples:
+                example-1:
+                  value:
+                    - callId: 532456
+                      NumberOfCalls: 75312
+                      State: Georgia
+                      CallsDate: '2022-03-14'
+        '400':
+          description: Invalid Request of Caller Volume
+          headers: {}
+        '404':
+          description: Information not found on Caller Volume
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+      operationId: get-callerVolume-start-end
+      description: Get the Caller Volume between a specified start and end date.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: start
+          description: The starting date to query
+        - schema:
+            type: string
+          in: query
+          name: end
+          description: The ending date to query
+  /callerVolume/dates/quarter:
+    get:
+      summary: Get Caller Volume for Quarter
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/callervolume-schema'
+              examples:
+                example-1:
+                  $ref: '#/components/examples/example-1'
+                example-2:
+                  $ref: '#/components/examples/example-2'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+      operationId: get-callerVolume-dates-quarter
+      description: 'Get the Caller Volume to UPS for the specific financial quarter (1, 2, 3, or 4)'
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: quarter
+          description: 'The quarter being queried (1, 2, 3, or 4)'
+components:
+  schemas:
+    callervolume-schema:
+      properties:
+        callId:
+          type: integer
+          format: int64
+          example: 532456
+        NumberOfCalls:
+          type: integer
+          format: int32
+          example: 75312
+          description: Number of calls from a specific date and state
+        State:
+          type: string
+          enum:
+            - Alabama
+            - Maine
+            - Pennsylvania
+            - Alaska
+            - Maryland
+            - Rhode Island
+            - Arizona
+            - Massachusetts
+            - South Carolina
+            - Arkansas
+            - Michigan
+            - South Dakota
+            - California
+            - Minnesota
+            - Tennessee
+            - Colorado
+            - Mississippi
+            - Texas
+            - Connecticut
+            - Missouri
+            - Utah
+            - Delaware
+            - Montana
+            - Vermont
+            - District of Columbia
+            - Nebraska
+            - Virginia
+            - Florida
+            - Nevada
+            - Washington
+            - Georgia
+            - New Hampshire
+            - West Virginia
+            - Hawaii
+            - New Jersey
+            - Wisconsin
+            - Idaho
+            - New Mexico
+            - Wyoming
+            - Illinois
+            - New York
+            - American Samoa
+            - Indiana
+            - North Carolina
+            - Guam
+            - Iowa
+            - North Dakota
+            - Northern Mariana Islands
+            - Kansas
+            - Ohio
+            - Palau
+            - Kentucky
+            - Oklahoma
+            - Puerto Rico
+            - Louisiana
+            - Oregon
+            - Virgin Islands
+          example: Georgia
+          description: State the calls came from
+        CallsDate:
+          type: string
+          format: date
+          description: Date the calls are from
+          example: '2022-03-14'
+      xml:
+        name: callervolume-schema
+      x-examples:
+        example-1:
+          $ref: '#/components/examples/example-1'
+        example-2:
+          $ref: '#/components/examples/example-2'
+      description: Schema being returned in reponse in JSON format
+  examples:
+    example-1:
+      value:
+        description: example of a calls volume entry
+        type: object
+        properties:
+          CallId:
+            type: integer
+            description: database id of this entry
+            example: 4215
+          CallsDate:
+            type: string
+            format: date
+            description: The date the call volume is from
+            example: '2022-07-27'
+          NumberOfCalls:
+            type: integer
+            description: the number of calls received by UPS on a given date
+            example: 5314
+          State:
+            type: string
+            format: enum
+            description: the state the calls were placed from
+            example: Georgia
+    example-2:
+      value:
+        callId: 532456
+        NumberOfCalls: 75312
+        State: Alabama
+        CallsDate: '2022-03-14'
