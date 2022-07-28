@@ -1,0 +1,72 @@
+openapi: 3.0.0
+x-stoplight:
+  id: 11q3xk9xir6p5
+info:
+  title: TimeSaved
+  version: '1.0'
+  description: This API returns Time Saved data from the boxWatchDB
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  /timeSaved:
+    get:
+      summary: GET Time Saved
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/timesaved-schema'
+              examples:
+                example-1:
+                  $ref: '#/components/examples/example-1'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+        '500':
+          description: Internal Server Error
+        '501':
+          description: Not Implemented
+      operationId: get-timeSaved
+      description: This endpoint will retrieve and return all UPS data about time saved
+components:
+  schemas:
+    timesaved-schema:
+      title: timesaved-schema
+      x-stoplight:
+        id: 3nfpwl0ae6dno
+      type: object
+      description: This model outlines the schema of the TimeSaved table in our database
+      x-examples:
+        example-1:
+          $ref: '#/components/examples/example-1'
+      properties:
+        ExpectedDeliveryDate:
+          type: string
+        DateDamagedPackageDetected:
+          type: string
+        DifferenceBetweenDates:
+          type: integer
+  examples:
+    example-1:
+      value:
+        description: Example of object json response
+        type: object
+        properties:
+          ExpectedDeliveryDate:
+            type: string
+            format: date
+            example: '2021-01-01'
+            description: expected date of package delivery
+          DateDamagedPackageDetected:
+            type: string
+            format: date
+            example: '2021-01-05'
+            description: date the damaged package was detected by BoxWatch
+          DifferenceBetweenDates:
+            type: int
+            example: 4
+            description: difference between expected delivery date and date damaged package was detected
