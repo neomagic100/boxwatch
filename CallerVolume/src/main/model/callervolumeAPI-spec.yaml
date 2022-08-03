@@ -21,9 +21,10 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/callervolume-schema'
+                $ref: '#/components/schemas/callervolume-schema'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/callervolume-schema'
               examples:
                 example-1:
                   value:
@@ -46,9 +47,12 @@ paths:
       tags: []
       responses:
         '200':
-          description: OK
+          description: Get Caller Volume dates between 2 specified dates.
           content:
             application/json:
+              schema:
+                $ref: '#/components/schemas/callervolume-schema'
+            application/xml:
               schema:
                 $ref: '#/components/schemas/callervolume-schema'
               examples:
@@ -91,11 +95,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/callervolume-schema'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/callervolume-schema'
               examples:
                 example-1:
-                  $ref: '#/components/examples/example-1'
-                example-2:
-                  $ref: '#/components/examples/example-2'
+                  value:
+                    - callId: 532456
+                      NumberOfCalls: 75312
+                      State: Georgia
+                      CallsDate: '2022-03-14'
         '400':
           description: Bad Request
         '404':
@@ -194,39 +203,14 @@ components:
           example: '2022-03-14'
       xml:
         name: callervolume-schema
-      x-examples:
-        example-1:
-          $ref: '#/components/examples/example-1'
-        example-2:
-          $ref: '#/components/examples/example-2'
       description: Schema being returned in reponse in JSON format
-  examples:
-    example-1:
-      value:
-        description: example of a calls volume entry
-        type: object
-        properties:
-          CallId:
-            type: integer
-            description: database id of this entry
-            example: 4215
-          CallsDate:
-            type: string
-            format: date
-            description: The date the call volume is from
-            example: '2022-07-27'
-          NumberOfCalls:
-            type: integer
-            description: the number of calls received by UPS on a given date
-            example: 5314
-          State:
-            type: string
-            format: enum
-            description: the state the calls were placed from
-            example: Georgia
-    example-2:
-      value:
-        callId: 532456
-        NumberOfCalls: 75312
-        State: Alabama
-        CallsDate: '2022-03-14'
+    
+  requestBodies:
+    callervolume-schema:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/callervolume-schema'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/callervolume-schema'
+      description: Caller volume return response
