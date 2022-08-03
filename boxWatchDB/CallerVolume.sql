@@ -1,4 +1,4 @@
-INSERT INTO CallerVolume (NumberOfCalls, State, CallDate)
+INSERT INTO CallerVolume (NumberOfCalls, State, CallsDate)
 VALUES
     (1988, 'AK', '2023-01-02'),
     (1979, 'GA', '2023-01-03'),
@@ -272,7 +272,7 @@ VALUES
     (902, 'OH', '2023-09-19'),
     (892, 'PA', '2023-09-20'),
     (877, 'HI', '2023-09-21'),
-    (876, 'OR','2023-09-21'),
+    (876, 'OR', '2023-09-21'),
     (873, 'ME', '2023-09-23'),
     (872, 'RI', '2023-09-24'),
     (866, 'OK', '2023-09-25'),

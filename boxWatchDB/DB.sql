@@ -44,10 +44,9 @@ CREATE VIEW v_CallerVolume AS
 DELIMITER $$
 CREATE PROCEDURE queryquarter (IN start DATE, IN end DATE)
 BEGIN
-	SELECT CallerVolume.State, SUM(CallerVolume.numberofcalls) 
+	SELECT CallerVolume.State, CallerVolume.numberofcalls
 	FROM CallerVolume 
-	WHERE CallsDate BETWEEN start AND end
-	GROUP BY CallerVolume.State;
+	WHERE CallsDate BETWEEN start AND end;
 END$$
 DELIMITER ;
 
