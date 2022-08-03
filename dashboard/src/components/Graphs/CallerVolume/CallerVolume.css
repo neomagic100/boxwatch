@@ -19,19 +19,22 @@ div.tooltip {
     pointer-events: none;
 }
 
-/* Legend Font Style */
-body {
-    font: 11px sans-serif;
-}
-
-/* Legend Position Style */
+/* Legend Style */
 .legend {
     position: absolute;
+    font-size: 11px;
     left: 725px;
-    bottom: 25px
+    bottom: -35px
 }
 
 .caller-volume__graph {
     position: absolute;
-    left: 95px;
+    left: 52px;
+}
+
+.quarter-select {
+    position: absolute;
+    bottom: -65px;
+    left: 20px;
+    width: 125px;
 }

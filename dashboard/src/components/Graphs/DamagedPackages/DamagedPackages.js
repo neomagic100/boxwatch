@@ -1,128 +1,51 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
-import { UserData } from "../../../data/DamagedPackagesData";
-import { useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import SpanToggleButton from "../../SpanToggleButton";
 import { Chart as ChartJS } from "chart.js/auto";
 import { useSlotProps } from "@mui/base";
 import "./DamagedPackages.css";
 
 function DamagedPackages(props) {
-  const [userData, setUserData] = useState({
-    labels: UserData.map((data) => data.date),
+  const [damageData, setDamageData] = useState([]);
+  const fetchData = (url) => {
+    fetch(
+      "https://damagedpackages-dot-burner-keeburnh.ue.r.appspot.com/damagedPackages" +
+        url,
+      {
+        method: "GET",
+        header: {
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Credentials": true,
+        },
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        setDamageData(data);
+      });
+  };
+  useEffect(() => {
+    fetchData("/dates/between/?start=2021-08-09&end=2022-08-08");
+  }, []);
+
+  var chartData = {
+    labels: damageData.map((data) => data.date.substring(2,10)),
     datasets: [
       {
         label: "Damages Detected",
-        data: UserData.map((data) => data.returns),
+        data: damageData.map((data) => data.numDetected),
         backgroundColor: ["#351C15"],
       },
       {
         label: "Damages Reported",
-        data: UserData.map((data) => data.returns),
+        data: damageData.map((data) => data.numReported),
         backgroundColor: ["#ffc400"],
       },
     ],
-  });
-  // const length = userData.datasets[0].data.length;
-  // const originalPercent =
-  //   (userData.datasets[0].data[length] - userData.datasets[0].data[0]) /
-  //   userData.datasets[0].data[0];
-  // const [percent, setPercent] = useState(originalPercent);
-
-  const inputRef1 = useRef();
-  const inputRef2 = useRef();
-
-  function filterDate(type) {
-    const dates = UserData.map((data) => data.date);
-    const volume = UserData.map((data) => data.returns);
-    //slice the array
-    let value1 = inputRef1.current.value;
-    let value2 = inputRef2.current.value;
-
-    const str1 = value1.toString();
-    const str2 = value2.toString();
-    var date1 = "";
-    var date2 = "";
-    var datesBack = 0;
-    if (type === "3days") {
-      //3 days back, inclusive so minus 2
-      datesBack = 2;
-    } else if (type === "1week") {
-      //1 week back
-      datesBack = 6;
-    } else if (type === "1month") {
-      datesBack = 29;
-    }
-    if (type === "basic") {
-      date1 =
-        str1.substring(5, 7) +
-        "." +
-        str1.substring(8, 10) +
-        "." +
-        str1.substring(0, 4);
-      date2 =
-        str2.substring(5, 7) +
-        "." +
-        str2.substring(8, 10) +
-        "." +
-        str2.substring(0, 4);
-    } else if (type === "3days" || type === "1week" || type === "1month") {
-      var today = new Date();
-      var threeDays = new Date(
-        new Date().setDate(new Date().getDate() - datesBack)
-      );
-      date1 =
-        ("0" + (threeDays.getMonth() + 1)).slice(-2) +
-        "." +
-        ("0" + threeDays.getDate()).slice(-2) +
-        "." +
-        threeDays.getFullYear();
-      date2 =
-        ("0" + (today.getMonth() + 1)).slice(-2) +
-        "." +
-        ("0" + today.getDate()).slice(-2) +
-        "." +
-        today.getFullYear();
-    }
-    // console.log(date1);
-    // console.log(date2);
-
-    const indexstartdate = dates.indexOf(date1);
-    const indexenddate = dates.indexOf(date2);
-    // console.log(indexstartdate);
-    // console.log(indexenddate);
-    //slice the array
-    const filterDate = dates.slice(indexstartdate, indexenddate + 1);
-    const filterDataPoints = volume.slice(indexstartdate, indexenddate + 1);
-
-    // console.log(filterDate, filterDataPoints);
-    // console.log(filterDataPoints[0]);
-    // console.log(filterDataPoints[filterDataPoints.length - 1]);
-
-    setUserData({
-      labels: filterDate,
-      datasets: [
-        {
-          label: "Damages Detected",
-          data: filterDataPoints,
-          backgroundColor: ["#351C15"],
-        },
-        {
-          label: "Damages Reported",
-          data: filterDataPoints,
-          backgroundColor: ["#ffc400"],
-        },
-      ],
-    });
-  }
+  };
 
   var options = {
-    plugins: {
-      title: {
-        display: true,
-        text: "",
-      },
-    },
     responsive: true,
     scales: {
       x: {
@@ -133,10 +56,63 @@ function DamagedPackages(props) {
       },
     },
   };
+  const inputRef1 = useRef();
+  const inputRef2 = useRef();
+
+  function filterDate(type) {
+    var url;
+    if (type === "basic") {
+      let value1 = inputRef1.current.value;
+      let value2 = inputRef2.current.value;
+
+      const str1 = value1.toString();
+      const str2 = value2.toString();
+      url = "/dates/between/?start=" + str1 + "&end=" + str2;
+    } else if (
+      type === "3days" ||
+      type === "1week" ||
+      type === "1month" ||
+      type === "6month"
+    ) {
+      var datesBack = 0;
+      if (type === "3days") {
+        //3 days back, inclusive so minus 2
+        datesBack = 2;
+      } else if (type === "1week") {
+        //1 week back
+        datesBack = 6;
+      } else if (type === "1month") {
+        datesBack = 29;
+      } else if (type === "6month") {
+        datesBack = 179;
+      }
+
+      var today = new Date();
+      var threeDays = new Date(
+        new Date().setDate(new Date().getDate() - datesBack)
+      );
+      var date1 =
+        threeDays.getFullYear() +
+        "-" +
+        ("0" + (threeDays.getMonth() + 1)).slice(-2) +
+        "-" +
+        ("0" + threeDays.getDate()).slice(-2);
+
+      var date2 =
+        today.getFullYear() +
+        "-" +
+        ("0" + (today.getMonth() + 1)).slice(-2) +
+        "-" +
+        ("0" + today.getDate()).slice(-2);
+      url = "/dates/between/?start=" + date1 + "&end=" + date2;
+    }
+
+    fetchData(url);
+  }
 
   return (
     <div className={ props.className }>
-      <Bar data={userData} options={options} />
+      <Bar data={ chartData } options={options} />
       <SpanToggleButton onClick={ (type) => filterDate(type) }></SpanToggleButton>
       <div className="claims-filter">
         <p className="claims-filter__select"> Select a Timeframe: </p>

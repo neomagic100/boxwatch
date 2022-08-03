@@ -12,62 +12,57 @@
     position: absolute;
 }
 
-.kpi__returns {
-    margin: 10px 0px 10px 22px;
-    width: 475px;
-    height: 325px;
-    border: 1px solid lightgray;
+.kpi__returns, .kpi__caller, .kpi__time, .kpi__claims, .kpi__transport, .kpi__emissions {
+    margin: 10px 0px 10px 25px;
+    background-color: white;
+    box-shadow: 1px 1px 5px lightgray;
     border-radius: 5px;
     display: inline-block;
     transition: all .35s ease-in-out;
     position: relative;
 }
 
-.kpi__returns:hover, .kpi__caller:hover, .kpi__transport:hover, .kpi__time:hover, .kpi__claims:hover {
-    transform: scale(1.01);
+.kpi__returns {
+    width: 530px;
+    height: 325px;
 }
 
 .kpi__caller {
-    margin: 10px 0px 10px 22px;
-    width: 974px;
-    height: 500px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    display: inline-block;
-    transition: all .35s ease-in-out;
-    position: relative;
+    width: 900px;
+    height: 575px;
 }
 
 .kpi__claims {
-    margin: 10px 0px 10px 22px;
-    width: 700px;
-    height: 405px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    display: inline-block;
-    transition: all .35s ease-in-out;
-    position: relative;
+    width: 530px;
+    height: 325px;
+    position: absolute;
+    top: 900px;
+    left: 932px;
 }
 
 .kpi__time {
-    margin: 10px 0px 10px 22px;
-    width: 700px;
+    width: 530px;
     height: 325px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    display: inline-block;
-    transition: all .35s ease-in-out;
     position: relative;
+    top: -250px;
+    left: 925px;
 }
 
 .kpi__transport {
-    margin: 10px 0px 10px 22px;
-    width: 700px;
-    height: 325px;
-    border: 1px solid lightgray;
-    border-radius: 5px;
-    display: inline-block;
-    transition: all .35s ease-in-out;
-    position: relative;
-    bottom: 310px;
+    width: 530px;
+    height: 300px;
+    position: absolute;
+    top: 810px;
+}
+
+.kpi__emissions {
+    width: 346px;
+    height: 300px;
+    position: absolute;
+    top: 810px;
+    left: 562px;
+}
+
+.kpi__returns:hover, .kpi__caller:hover, .kpi__transport:hover, .kpi__time:hover, .kpi__claims:hover, .kpi__emissions:hover {
+    transform: scale(1.01);
 }

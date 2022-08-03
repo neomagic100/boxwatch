@@ -1,0 +1,50 @@
+.emissions-month {
+    text-align: center;
+    margin-top: -12px;
+}
+
+.emissions-day {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.emissions-year__reductions {
+    margin-top: 75px;
+    margin-left: 25px;
+    line-height: 15px;
+    font-size: 1.9rem;
+    color: #ffc400;
+}
+
+.emissions-year__reductions-weight {
+    position: absolute;
+    font-size: 1.05rem;
+    color: black;
+}
+
+.emissions-year__reductions-year {
+    color: black;
+    font-size: 0.8rem;
+    line-height: 0px;
+}
+
+.emissions-overall__reductions {
+    position: relative;
+    bottom: 75px;
+    left: 150px;
+    color: #fce8a4;
+    line-height: 15px;
+    font-size: 1.9rem;
+}
+
+.emissions-overall__reductions-weight {
+    position: absolute;
+    font-size: 1.05rem;
+    color: black;
+}
+
+.emissions-overall__reductions-overall {
+    color: black;
+    font-size: 0.8rem;
+    line-height: 0px;
+}

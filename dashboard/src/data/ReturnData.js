@@ -166,5 +166,13 @@ export const UserData = [
     {
       date: "07.27.2022",
       returns: 1234
+    },
+    {
+      date: "07.28.2022",
+      returns: 1456
+    },
+    {
+      date: "07.29.2022",
+      returns: 1567
     }
   ];
