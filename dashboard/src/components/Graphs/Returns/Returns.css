@@ -13,13 +13,13 @@
     font-size: 1rem;
     float: left;
     margin-top: -23px;
-    margin-left: 270px;
+    margin-left: 248px;
 }
 
 .returns-filter__select {
     font-size: 0.8rem;
     display: inline;
-    margin-left: 90px;
+    margin-left: 95px;
 }
 
 .returns-filter__date1 {
@@ -46,7 +46,7 @@
 .returns__graph {
     width: 450px;
     top: 10%;
-    left: 3%;
+    left: 7%;
     transform: scale(1);
     position: absolute;
 }

@@ -1,8 +1,8 @@
 .damaged-packages__graph {
     position: absolute;
-    width: 680px;
-    left: 5px;
-    top: 0px;
+    width: 465px;
+    left: 25px;
+    top: 30px;
 }
 
 .claims-filter {
@@ -19,7 +19,7 @@
 .claims-filter__select {
     font-size: 0.9rem;
     display: inline;
-    margin-left: -25px;
+    margin-left: 120px;
 }
 
 .claims-filter__date1 {

@@ -9,8 +9,6 @@ const TitleBar = () => {
             <div className="title-bar__inner">
                 <img className="title-bar__inner__ups-logo" src={ UPSLogo }></img>
                 <p className="title-bar__inner__title">KPI Dashboard</p>
-                <p className="title-bar__inner__powered">Powered By</p>
-                <img className="title-bar__inner__ps-logo" src={ PSLogo }></img>
             </div>
         </div>
     );

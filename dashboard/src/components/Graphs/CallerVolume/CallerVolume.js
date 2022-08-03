@@ -1,8 +1,9 @@
 import * as d3 from "d3";
 import "./CallerVolume.css";
 import { useState, useRef, useEffect } from "react";
+import { FormControl, InputLabel, NativeSelect } from "@mui/material";
 
-const drawSvg = ({ inputRef, width, height }) => {
+const drawSvg = ({ inputRef, url, width, height }) => {
   const container = d3.select(inputRef.current);
 
   var projection = d3
@@ -18,7 +19,7 @@ const drawSvg = ({ inputRef, width, height }) => {
   // Define linear scale for output
   const color = d3
     .scaleThreshold()
-    .domain(d3.range(0, 5000, 5000 / 8))
+    .domain(d3.range(0, 10000, 10000 / 8))
     .range(d3.schemeYlOrBr[9]);
 
   color.domain().reverse();
@@ -31,19 +32,19 @@ const drawSvg = ({ inputRef, width, height }) => {
     .attr("class", "tooltip")
     .style("opacity", 0);
 
-  d3.csv("volume.csv").then(function (data) {
+  d3.json(url).then(function (data) {
     d3.json("us-states.json").then(function (json) {
       for (var i = 0; i < data.length; i++) {
         // Grab State Name
         var dataState = data[i].state;
 
         // Grab data value
-        var dataValue = data[i].volume;
+        var dataValue = data[i].numberOfCalls;
         //console.log(dataValue);
 
         // Find the corresponding state inside the GeoJSON
         for (var j = 0; j < json.features.length; j++) {
-          var jsonState = json.features[j].properties.name;
+          var jsonState = json.features[j].properties.abbrev;
 
           if (dataState === jsonState) {
             // Copy the data value into the JSON
@@ -51,6 +52,12 @@ const drawSvg = ({ inputRef, width, height }) => {
 
             // Stop looking through the JSON
             break;
+          }
+        }
+
+        for(var k = 0; k < json.features.length; k++) {
+          if(!json.features[k].properties.volume) {
+            json.features[k].properties.volume = Math.floor(Math.random() * 1000);
           }
         }
       }
@@ -109,13 +116,13 @@ const drawSvg = ({ inputRef, width, height }) => {
           div.transition().duration(500).style("opacity", 0);
         });
     });
-    var num = 5000;
+    var num = 10000;
     var index = 0;
     var legendText = [];
     while (num >= 0) {
       legendText[index] = num;
       index++;
-      num = num - 625;
+      num = num - 1250;
       //console.log(index);
     }
     //console.log(legendText);
@@ -154,17 +161,53 @@ const drawSvg = ({ inputRef, width, height }) => {
 const CallerVolume = (props) => {
   const inputRef = useRef(null);
   const [hasRendered, setRender] = useState(false);
+  const [url, setUrl] = useState("https://callervolume-dot-burner-keeburnh.ue.r.appspot.com/callerVolume/dates/quarter/?quarter=1");
 
   //drawSvg({ inputRef, ...props });
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     if (!hasRendered) {
-      drawSvg({ inputRef, ...props });
+      drawSvg({ inputRef, url, ...props });
       setRender(true);
     }
   });
 
-  return <div className={props.className} id="graph-container" ref={inputRef}></div>;
+  const changeUrl = (event) => {
+    setUrl(event.target.value);
+    setRender(false);
+
+    d3.select("svg").remove();
+    d3.select("svg").remove();
+  };
+
+  return(
+    <div>
+      <div className={props.className} id="graph-container" ref={inputRef}>
+        <div className="quarter-select">
+          <FormControl fullWidth>
+            <InputLabel variant="standard" htmlFor="uncontrolled-native">
+              Select Quarter
+            </InputLabel>
+            <NativeSelect
+              defaultValue={1}
+              inputProps={{
+                name: "Quarter",
+                id: "uncontrolled-native",
+              }}
+              onChange={changeUrl}
+            >
+              <option value={"https://callervolume-dot-burner-keeburnh.ue.r.appspot.com/callerVolume/dates/quarter/?quarter=1"}>Q1</option>
+              <option value={"https://callervolume-dot-burner-keeburnh.ue.r.appspot.com/callerVolume/dates/quarter/?quarter=2"}>Q2</option>
+              <option value={"https://callervolume-dot-burner-keeburnh.ue.r.appspot.com/callerVolume/dates/quarter/?quarter=3"}>Q3</option>
+              <option value={"https://callervolume-dot-burner-keeburnh.ue.r.appspot.com/callerVolume/dates/quarter/?quarter=4"}>Q4</option>
+            </NativeSelect>
+          </FormControl>
+        </div>
+        
+      </div>
+    </div>
+    
+  );
 };
 
 export default CallerVolume;

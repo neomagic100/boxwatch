@@ -36,7 +36,7 @@ const SpanToggleButton = (props) => {
                 disableRipple>1M</ToggleButton>
             <ToggleButton
                 className="returns-toggle__button"
-                value="6months"
+                value="6month"
                 disableRipple>6M</ToggleButton>
         </ToggleButtonGroup>
     );
