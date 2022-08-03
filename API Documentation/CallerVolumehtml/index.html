@@ -1,0 +1,403 @@
+<!doctype html>
+<html>
+  <head>
+    <title>callervolume</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>callervolume</h1>
+    <div class="app-desc">Get the caller volume for each day to UPS</div>
+    <div class="app-desc">More information: <a href="https://openapi-generator.tech">https://openapi-generator.tech</a></div>
+    <div class="app-desc">Contact Info: <a href="team@openapitools.org">team@openapitools.org</a></div>
+    <div class="app-desc">Version: 1.0</div>
+    <div class="app-desc">BasePath:</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Default">Default</a></h4>
+  <ul>
+  <li><a href="#getCallerVolume"><code><span class="http-method">get</span> /callerVolume</code></a></li>
+  <li><a href="#getCallerVolumeDatesBetween"><code><span class="http-method">get</span> /callerVolume/dates/between</code></a></li>
+  <li><a href="#getCallerVolumeDatesQuarter"><code><span class="http-method">get</span> /callerVolume/dates/quarter</code></a></li>
+  </ul>
+
+  <h1><a name="Default">Default</a></h1>
+  <div class="method"><a name="getCallerVolume"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /callerVolume</code></pre></div>
+    <div class="method-summary">Get callerVolume (<span class="nickname">getCallerVolume</span>)</div>
+    <div class="method-notes">Get all data on caller volume</div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#callerVolume-Model">callerVolume-Model</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "date" : "2000-01-23",
+  "numberofcalls" : 6,
+  "id" : 0,
+  "state" : "Alabama"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#callerVolume-Model">callerVolume-Model</a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    Internal Server Error
+        <a href="#"></a>
+    <h4 class="field-label">501</h4>
+    Not Implemented
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getCallerVolumeDatesBetween"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /callerVolume/dates/between</code></pre></div>
+    <div class="method-summary">Get Caller Volume between two dates (<span class="nickname">getCallerVolumeDatesBetween</span>)</div>
+    <div class="method-notes">Get the UPS caller volume for each state between two specified dates</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">start (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Starting date default: null </div><div class="param">end (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Ending date default: null </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#callerVolume-Model">callerVolume-Model</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "date" : "2000-01-23",
+  "numberofcalls" : 6,
+  "id" : 0,
+  "state" : "Alabama"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#callerVolume-Model">callerVolume-Model</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    Internal Server Error
+        <a href="#"></a>
+    <h4 class="field-label">501</h4>
+    Not Implemented
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getCallerVolumeDatesQuarter"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /callerVolume/dates/quarter</code></pre></div>
+    <div class="method-summary">Get caller volume quarter (<span class="nickname">getCallerVolumeDatesQuarter</span>)</div>
+    <div class="method-notes">Get the Caller volume for each state for a specified financial quarter</div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">quarter (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; The quarter being queried (1, 2, 3, or 4) default: null </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#callerVolume-Model">callerVolume-Model</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "date" : "2000-01-23",
+  "numberofcalls" : 6,
+  "id" : 0,
+  "state" : "Alabama"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    OK
+        <a href="#callerVolume-Model">callerVolume-Model</a>
+    <h4 class="field-label">400</h4>
+    Bad Request
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    Not Found
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    Internal Server Error
+        <a href="#"></a>
+    <h4 class="field-label">501</h4>
+    Not Implemented
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#callerVolume-Model"><code>callerVolume-Model</code> - Caller Volume Model</a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="callerVolume-Model"><code>callerVolume-Model</code> - Caller Volume Model</a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'>Caller Volume Schema</div>
+    <div class="field-items">
+      <div class="param">id (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">numberofcalls (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">date (optional)</div><div class="param-desc"><span class="param-type"><a href="#date">date</a></span>  format: date</div>
+<div class="param">state (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+        <div class="param-enum-header">Enum:</div>
+        <div class="param-enum">Alabama</div><div class="param-enum">Maine</div><div class="param-enum">Pennsylvania</div><div class="param-enum">Alaska</div><div class="param-enum">Maryland</div><div class="param-enum">Rhode Island</div><div class="param-enum">Arizona</div><div class="param-enum">Massachusetts</div><div class="param-enum">South Carolina</div><div class="param-enum">Arkansas</div><div class="param-enum">Michigan</div><div class="param-enum">South Dakota</div><div class="param-enum">California</div><div class="param-enum">Minnesota</div><div class="param-enum">Tennessee</div><div class="param-enum">Colorado</div><div class="param-enum">Mississippi</div><div class="param-enum">Texas</div><div class="param-enum">Connecticut</div><div class="param-enum">Missouri</div><div class="param-enum">Utah</div><div class="param-enum">Delaware</div><div class="param-enum">Montana</div><div class="param-enum">Vermont</div><div class="param-enum">District of Columbia</div><div class="param-enum">Nebraska</div><div class="param-enum">Virginia</div><div class="param-enum">Florida</div><div class="param-enum">Nevada</div><div class="param-enum">Washington</div><div class="param-enum">Georgia</div><div class="param-enum">New Hampshire</div><div class="param-enum">West Virginia</div><div class="param-enum">Hawaii</div><div class="param-enum">New Jersey</div><div class="param-enum">Wisconsin</div><div class="param-enum">Idaho</div><div class="param-enum">New Mexico</div><div class="param-enum">Wyoming</div><div class="param-enum">Illinois</div><div class="param-enum">New York</div><div class="param-enum">American Samoa</div><div class="param-enum">Indiana</div><div class="param-enum">North Carolina</div><div class="param-enum">Guam</div><div class="param-enum">Iowa</div><div class="param-enum">North Dakota</div><div class="param-enum">Northern Mariana Islands</div><div class="param-enum">Kansas</div><div class="param-enum">Ohio</div><div class="param-enum">Palau</div><div class="param-enum">Kentucky</div><div class="param-enum">Oklahoma</div><div class="param-enum">Puerto Rico</div><div class="param-enum">Louisiana</div><div class="param-enum">Oregon</div><div class="param-enum">Virgin Islands</div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
