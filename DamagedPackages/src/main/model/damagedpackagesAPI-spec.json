@@ -1,0 +1,140 @@
+{
+  "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "lyivtoah2oqou"
+  },
+  "info": {
+    "title": "DamagedPackages",
+    "version": "1.0",
+    "description": "Get data of damaged packages on specific dates."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/damagedPackages": {
+      "get": {
+        "summary": "Get damaged packages",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../damagedpackagesAPI-spec.yaml#/components/schemas/damagedpackages-schema"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        },
+        "operationId": "get-damagedPackages",
+        "description": "Gets all data about UPS damaged packages from database"
+      }
+    },
+    "/damagedPackages/dates/between": {
+      "get": {
+        "summary": "Get damaged packaged between specified dates",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "../damagedpackagesAPI-spec.yaml#/components/schemas/damagedpackages-schema"
+                },
+                "examples": {
+                  "example-1": {
+                    "value": {
+                      "Date": "string",
+                      "NumberDetected": 0,
+                      "NumberReported": 0
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        },
+        "operationId": "get-damagedPackages-dates-between",
+        "description": "This endpoint will return damaged packages data between two different days",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "start",
+            "description": "Start Date"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "end",
+            "description": "End Date"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "damagedPackage-model": {
+        "title": "damagedPackage-model",
+        "x-stoplight": {
+          "id": "qzl79en0ma2na"
+        },
+        "type": "object",
+        "description": "damagedPackage Schema",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "NumberDetected": {
+            "type": "integer"
+          },
+          "NumberReported": {
+            "type": "integer"
+          }
+        },
+        "x-examples": {
+          "example-1": {
+            "date": "2019-08-24",
+            "NumberDetected": 312,
+            "NumberReported": 45
+          }
+        }
+      }
+    }
+  }
+}
