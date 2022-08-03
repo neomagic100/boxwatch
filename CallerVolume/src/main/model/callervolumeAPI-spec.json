@@ -1,0 +1,233 @@
+{
+  "openapi": "3.0.0",
+  "x-stoplight": {
+    "id": "ff78pzclwofd7"
+  },
+  "info": {
+    "title": "callervolume",
+    "version": "1.0",
+    "description": "Get the caller volume for each day to UPS"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/callerVolume": {
+      "get": {
+        "summary": "Get callerVolume",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/callerVolume-Model"
+                },
+                "examples": {}
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        },
+        "operationId": "get-callerVolume",
+        "description": "Get all data on caller volume"
+      }
+    },
+    "/callerVolume/dates/between": {
+      "get": {
+        "summary": "Get Caller Volume between two dates",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/callerVolume-Model"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        },
+        "operationId": "get-callerVolume-dates-between",
+        "description": "Get the UPS caller volume for each state between two specified dates",
+        "parameters": [
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "start",
+            "description": "Starting date"
+          },
+          {
+            "schema": {
+              "type": "string"
+            },
+            "in": "query",
+            "name": "end",
+            "description": "Ending date"
+          }
+        ]
+      }
+    },
+    "/callerVolume/dates/quarter": {
+      "get": {
+        "summary": "Get caller volume quarter",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/callerVolume-Model"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          },
+          "501": {
+            "description": "Not Implemented"
+          }
+        },
+        "operationId": "get-callerVolume-dates-quarter",
+        "description": "Get the Caller volume for each state for a specified financial quarter",
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer"
+            },
+            "in": "query",
+            "name": "quarter",
+            "description": "The quarter being queried (1, 2, 3, or 4)"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "callerVolume-Model": {
+        "type": "object",
+        "x-examples": {
+          "callerVolume-example": {
+            "id": 1,
+            "numberofcalls": 4215,
+            "state": "Alaska",
+            "date": "2022-03-03"
+          }
+        },
+        "description": "Caller Volume Schema",
+        "title": "Caller Volume Model",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "numberofcalls": {
+            "type": "integer"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "state": {
+            "type": "string",
+            "enum": [
+              "Alabama",
+              "Maine",
+              "Pennsylvania",
+              "Alaska",
+              "Maryland",
+              "Rhode Island",
+              "Arizona",
+              "Massachusetts",
+              "South Carolina",
+              "Arkansas",
+              "Michigan",
+              "South Dakota",
+              "California",
+              "Minnesota",
+              "Tennessee",
+              "Colorado",
+              "Mississippi",
+              "Texas",
+              "Connecticut",
+              "Missouri",
+              "Utah",
+              "Delaware",
+              "Montana",
+              "Vermont",
+              "District of Columbia",
+              "Nebraska",
+              "Virginia",
+              "Florida",
+              "Nevada",
+              "Washington",
+              "Georgia",
+              "New Hampshire",
+              "West Virginia",
+              "Hawaii",
+              "New Jersey",
+              "Wisconsin",
+              "Idaho",
+              "New Mexico",
+              "Wyoming",
+              "Illinois",
+              "New York",
+              "American Samoa",
+              "Indiana",
+              "North Carolina",
+              "Guam",
+              "Iowa",
+              "North Dakota",
+              "Northern Mariana Islands",
+              "Kansas",
+              "Ohio",
+              "Palau",
+              "Kentucky",
+              "Oklahoma",
+              "Puerto Rico",
+              "Louisiana",
+              "Oregon",
+              "Virgin Islands"
+            ]
+          }
+        }
+      }
+    },
+    "examples": {},
+    "responses": {}
+  }
+}
